@@ -1,0 +1,174 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "6db6684d674e371f23ec981c5477943f",
+    "entities": [
+      {
+        "tableName": "Persons",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`personId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `actor` TEXT NOT NULL, `alive` INTEGER NOT NULL, `ancestry` TEXT, `dateOfBirth` TEXT, `eyeColour` TEXT, `gender` TEXT NOT NULL, `hairColour` TEXT, `hogwartsStaff` INTEGER NOT NULL, `hogwartsStudent` INTEGER NOT NULL, `house` TEXT NOT NULL, `localImage` TEXT NOT NULL, `name` TEXT NOT NULL, `patronus` TEXT, `species` TEXT, `yearOfBirth` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "personId",
+            "columnName": "personId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actor",
+            "columnName": "actor",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "alive",
+            "columnName": "alive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ancestry",
+            "columnName": "ancestry",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dateOfBirth",
+            "columnName": "dateOfBirth",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "eyeColour",
+            "columnName": "eyeColour",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gender",
+            "columnName": "gender",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hairColour",
+            "columnName": "hairColour",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "hogwartsStaff",
+            "columnName": "hogwartsStaff",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hogwartsStudent",
+            "columnName": "hogwartsStudent",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "house",
+            "columnName": "house",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localImage",
+            "columnName": "localImage",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "patronus",
+            "columnName": "patronus",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "species",
+            "columnName": "species",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "yearOfBirth",
+            "columnName": "yearOfBirth",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "personId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Wands",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`wandId` INTEGER NOT NULL, `wood` TEXT, `core` TEXT, `length` TEXT, PRIMARY KEY(`wandId`), FOREIGN KEY(`wandId`) REFERENCES `Persons`(`personId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "wandId",
+            "columnName": "wandId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wood",
+            "columnName": "wood",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "core",
+            "columnName": "core",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "length",
+            "columnName": "length",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "wandId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": [
+          {
+            "table": "Persons",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "wandId"
+            ],
+            "referencedColumns": [
+              "personId"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6db6684d674e371f23ec981c5477943f')"
+    ]
+  }
+}
