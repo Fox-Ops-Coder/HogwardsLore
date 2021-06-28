@@ -2,21 +2,15 @@ package com.foxdev.hogwartslore.repository;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import com.foxdev.hogwartslore.data.net.DataLoader;
 import com.foxdev.hogwartslore.data.sql.HogwartsDb;
 import com.foxdev.hogwartslore.objects.Person;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.function.Function;
 
 import javax.inject.Inject;
 
@@ -36,10 +30,10 @@ public final class PersonRepository {
     
     public void getPersonsFromHome(@NonNull String house) {
         this.house = house;
-        dataLoader.getPersonsFromHome(house, this::onChange);
+        dataLoader.getPersonsFromHome(house, this::processData);
     }
 
-    private Void onChange(@Nullable Person[] people) {
+    private Void processData(@Nullable Person[] people) {
         ExecutorService dbThread = Executors.newSingleThreadExecutor();
 
         if (people != null) {
@@ -50,11 +44,8 @@ public final class PersonRepository {
                 Person[] personsArray = hogwartsDb.getPersonDao()
                         .getPersonsFromHouse(house);
 
-                if (personsArray.length == 0) {
-                    persons.postValue(null);
-                } else {
-                    persons.postValue(personsArray);
-                }
+                if (personsArray.length == 0) persons.postValue(null);
+                else persons.postValue(personsArray);
             });
         }
 

@@ -1,6 +1,5 @@
 package com.foxdev.hogwartslore.data.sql;
 
-import androidx.annotation.NonNull;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -24,11 +23,9 @@ public abstract class PersonDao {
     protected abstract Person any(String house);
 
     @Transaction
-    public void insertPersons(@NonNull Person[] persons, @NonNull String house) {
+    public void insertPersons(Person[] persons, String house) {
         if (any(house) == null) {
             for (Person person : persons) {
-                assert person.internetImage != null;
-                person.localImage = person.internetImage;
                 final long personId = insertPerson(person);
                 Wand wand = person.wand;
 
@@ -41,13 +38,13 @@ public abstract class PersonDao {
     }
 
     @Query("SELECT * FROM Persons WHERE house = :house")
-    protected abstract Person[] getPersons(@NonNull String house);
+    protected abstract Person[] getPersons(String house);
 
     @Query("SELECT * FROM Wands WHERE wandId = :wandId")
     protected abstract Wand getPersonWand(long wandId);
 
     @Transaction
-    public Person[] getPersonsFromHouse(@NonNull String house) {
+    public Person[] getPersonsFromHouse(String house) {
         Person[] persons = getPersons(house);
         for (Person person : persons) {
             person.wand = getPersonWand(person.personId);

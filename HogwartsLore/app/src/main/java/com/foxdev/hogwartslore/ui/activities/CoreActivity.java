@@ -1,15 +1,11 @@
 package com.foxdev.hogwartslore.ui.activities;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.foxdev.hogwartslore.R;
@@ -18,10 +14,11 @@ import com.foxdev.hogwartslore.objects.Wand;
 import com.foxdev.hogwartslore.ui.fragments.BlackHole;
 import com.foxdev.hogwartslore.ui.fragments.HomeFragment;
 import com.foxdev.hogwartslore.ui.fragments.PersonFragment;
+import com.foxdev.hogwartslore.ui.fragments.ProgressFragment;
 import com.foxdev.hogwartslore.ui.fragments.WandFragment;
 import com.foxdev.hogwartslore.util.viewmodels.PersonViewModel;
 
-import org.jetbrains.annotations.NotNull;
+import java.util.Objects;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -56,6 +53,12 @@ public final class CoreActivity extends AppCompatActivity {
     }
 
     public void loadPersons(@NonNull String house) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, new ProgressFragment())
+                .addToBackStack("loading")
+                .commit();
+
         personViewModel.getPersonsFromHome(house);
     }
 
@@ -85,6 +88,12 @@ public final class CoreActivity extends AppCompatActivity {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
         if (fragment instanceof HomeFragment) finish();
+        else if (fragment instanceof PersonFragment) {
+            getSupportFragmentManager().popBackStack();
+            super.onBackPressed();
+        }
+        else if (fragment instanceof ProgressFragment){
+        }
         else super.onBackPressed();
     }
 }

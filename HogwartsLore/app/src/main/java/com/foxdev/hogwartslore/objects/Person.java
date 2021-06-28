@@ -80,14 +80,10 @@ public final class Person implements Parcelable {
     @NonNull
     public String house = "";
 
+    @SerializedName("image")
     @ColumnInfo(typeAffinity = TEXT)
     @NonNull
-    public String localImage = "";
-
-    @SerializedName("image")
-    @Nullable
-    @Ignore
-    public String internetImage = "";
+    public String image = "";
 
     @SerializedName("name")
     @ColumnInfo(typeAffinity = TEXT)
@@ -130,8 +126,7 @@ public final class Person implements Parcelable {
         hogwartsStaff = in.readByte() != 0;
         hogwartsStudent = in.readByte() != 0;
         house = in.readString();
-        localImage = in.readString();
-        internetImage = in.readString();
+        image = in.readString();
         name = in.readString();
         patronus = in.readString();
         species = in.readString();
@@ -183,8 +178,7 @@ public final class Person implements Parcelable {
         dest.writeByte((byte) (hogwartsStaff ? 1 : 0));
         dest.writeByte((byte) (hogwartsStudent ? 1 : 0));
         dest.writeString(house);
-        dest.writeString(localImage);
-        dest.writeString(internetImage);
+        dest.writeString(image);
         dest.writeString(name);
         dest.writeString(patronus);
         dest.writeString(species);

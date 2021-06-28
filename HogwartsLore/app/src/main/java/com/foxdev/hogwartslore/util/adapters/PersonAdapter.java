@@ -39,7 +39,7 @@ public final class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.Pers
         holder.bind(person);
         holder.itemView.setOnClickListener(onClickListener);
 
-        ImageLoader.loadImage(person.internetImage,
+        ImageLoader.loadImage(person.image,
                 (ImageView) holder.itemView.findViewById(R.id.person_image));
     }
 

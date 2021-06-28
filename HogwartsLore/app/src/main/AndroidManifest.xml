@@ -5,14 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="false"
+        android:icon="@mipmap/harry_lore_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/harry_lore_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.HogwartsLore"
         android:name=".core.HogwartsApp"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:fullBackupContent="false">
         <activity android:name=".ui.activities.CoreActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
