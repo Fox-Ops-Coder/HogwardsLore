@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 
 import com.foxdev.hogwartslore.R;
 
-public class ProgressFragment extends Fragment {
+/**
+ * Фрагмент с ProgressBar
+ */
+public final class ProgressFragment extends Fragment {
 
     public ProgressFragment() {
     }

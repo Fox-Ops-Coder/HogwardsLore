@@ -33,6 +33,11 @@ public final class PersonRepository {
         dataLoader.getPersonsFromHome(house, this::processData);
     }
 
+    /**
+     * Метод обрабатывает данные полученные при попытке загрузки из интернета
+     * @param people Массив персонажей
+     * @return null
+     */
     private Void processData(@Nullable Person[] people) {
         ExecutorService dbThread = Executors.newSingleThreadExecutor();
 

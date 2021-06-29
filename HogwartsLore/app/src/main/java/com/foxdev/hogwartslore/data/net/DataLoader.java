@@ -41,6 +41,11 @@ public final class DataLoader {
                 .create(APIService.class);
     }
 
+    /**
+     * Загружает данные о персонажах из интернета
+     * @param house Имя факультета
+     * @param callBack Обработчик загруженных данных
+     */
     public void getPersonsFromHome(@NonNull String house, Function<Person[], Void> callBack) {
         apiService.getPersonsFromHome(house).enqueue(new Callback<Person[]>() {
             @Override

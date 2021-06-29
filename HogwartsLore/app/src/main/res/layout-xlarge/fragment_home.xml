@@ -12,10 +12,12 @@
 
         <Button
             android:id="@+id/gryffindor_button"
-            android:layout_width="740dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:text="@string/gryffindor_title"
-            android:textSize="75sp"
+            android:textSize="70sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -25,11 +27,13 @@
 
         <Button
             android:id="@+id/slitherin_button"
-            android:layout_width="740dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="55dp"
+            android:layout_marginEnd="25dp"
             android:text="@string/slytherin_title"
-            android:textSize="75sp"
+            android:textSize="70sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,11 +41,13 @@
 
         <Button
             android:id="@+id/ravenclaw_button"
-            android:layout_width="740dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="55dp"
+            android:layout_marginEnd="25dp"
             android:text="@string/ravenclaw_title"
-            android:textSize="75sp"
+            android:textSize="70sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,11 +55,13 @@
 
         <Button
             android:id="@+id/hufflepuff_button"
-            android:layout_width="740dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
             android:layout_marginTop="55dp"
+            android:layout_marginEnd="25dp"
             android:text="@string/hufflepuff_title"
-            android:textSize="75sp"
+            android:textSize="70sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
